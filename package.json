@@ -29,7 +29,7 @@
   "homepage": "https://github.com/jlonardi/node-audio-windows#readme",
   "dependencies": {
     "nan": "^2.11.1",
-    "node-gyp": "^3.8.0"
+    "node-gyp": "^8.4.1"
   },
   "devDependencies": {
     "chalk": "^2.4.1"
