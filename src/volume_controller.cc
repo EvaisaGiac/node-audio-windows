@@ -153,7 +153,7 @@ class VolumeControlWrapper : public Nan::ObjectWrap {
       return Nan::ThrowError(Nan::New("Exactly one number parameter is required.").ToLocalChecked());
     }
 
-    float volume = (float)info[0]->NumberValue();
+    float volume = (float)info[0]->NumberValue(Nan::GetCurrentContext()).FromMaybe(0);;
     auto obj = Nan::ObjectWrap::Unwrap<VolumeControlWrapper>(info.Holder());
     try {
       obj->device.setVolume(volume);
@@ -176,7 +176,7 @@ class VolumeControlWrapper : public Nan::ObjectWrap {
       return Nan::ThrowError(Nan::New("Exactly one boolean parameter is required.").ToLocalChecked());
     }
 
-    bool muted = info[0]->BooleanValue();
+    bool muted = Nan::To<bool>(info[0]).FromJust();
     auto obj = Nan::ObjectWrap::Unwrap<VolumeControlWrapper>(info.Holder());
     try {
       obj->device.setMuted(muted);
